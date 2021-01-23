@@ -1,6 +1,0 @@
-{
-  "baseUrl": "http://localhost:5000",
-  "port": 5000,
-  "mongoUri": "mongodb+srv://dbUser:cwQ6nwxLprqwvyNX@cluster0.ddipb.mongodb.net/app?retryWrites=true&w=majority",
-  "jwtSecret": "gVcI4CLTTucrp0NbXliBtM6WMS9EYiC3"
-}
