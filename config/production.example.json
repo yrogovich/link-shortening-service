@@ -1,0 +1,6 @@
+{
+  "baseUrl": "__your_production_domain__",
+  "port": 5000,
+  "mongoUri": "__add_your_private_uri__",
+  "jwtSecret": "__come_up_your_secret_key__"
+}
