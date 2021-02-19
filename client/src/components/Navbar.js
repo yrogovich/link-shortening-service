@@ -1,29 +1,39 @@
 import React, {useContext} from 'react'
-import {NavLink, useHistory} from "react-router-dom"
+import {useHistory} from "react-router-dom"
 import {AuthContext} from "../context/AuthContext"
+import {useMessage} from "../hooks/message.hook"
 
 export const Navbar = () => {
     const history = useHistory()
     const auth = useContext(AuthContext)
+    const message = useMessage()
 
-    const  logoutHandler = event => {
+    const logoutHandler = event => {
         event.preventDefault()
         auth.logout()
+        message("<span uk-icon='lock'></span>  You are logged out!")
         history.push('/')
     }
 
+    const menu = <div className="uk-navbar-right">
+        <ul className="uk-navbar-nav">
+            <li><a href="/" onClick={logoutHandler}>Logout</a></li>
+        </ul>
+    </div>
+
     return (
-        <nav>
-            <div className="container">
-                <div className="nav-wrapper">
-                    <a href="/" className="brand-logo">Mern App</a>
-                    <ul id="nav-mobile" className="right hide-on-med-and-down">
-                        <li><NavLink to="/create">Create</NavLink></li>
-                        <li><NavLink to="/links">Links</NavLink></li>
-                        <li><a href="/" onClick={logoutHandler}>Logout</a></li>
-                    </ul>
-                </div>
+        <header className="navbar uk-navbar-container uk-navbar-transparent">
+            <div className="uk-container">
+                <nav className="uk-navbar">
+                    <div className="uk-navbar-left">
+                        <a href="/" className="uk-navbar-item uk-logo">
+                            <span uk-icon="icon: link; ratio: 2"></span> Shorten it
+                        </a>
+                    </div>
+
+                    { auth.isAuthenticated && menu }
+                </nav>
             </div>
-        </nav>
+        </header>
     )
 }

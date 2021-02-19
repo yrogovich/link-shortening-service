@@ -22,8 +22,18 @@ router.post('/generate', auth, async (req, res) => {
             code, to, from, owner: req.user.userId
         })
 
-        await  link.save()
+        await link.save()
+
         req.status(201).json({link})
+    } catch (e) {
+        res.status(500).json({ message: "Something went wrong" })
+    }
+})
+
+router.post('/remove', auth, async (req, res) => {
+    try {
+        const deletedLink = await Link.deleteOne({to: req.body.to})
+        res.status(201).json(deletedLink)
     } catch (e) {
         res.status(500).json({ message: "Something went wrong" })
     }
@@ -38,9 +48,11 @@ router.get('/', auth, async (req, res) => {
     }
 })
 
+
+
 router.get('/:id', auth, async (req, res) => {
     try {
-        const links = await  Link.findById(req.params.id)
+        const links = await Link.findById(req.params.id)
         res.json(links)
     } catch (e) {
         res.status(500).json({ message: "Something went wrong" })

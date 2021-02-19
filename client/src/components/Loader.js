@@ -1,21 +1,7 @@
 import React from 'react'
 
-export const Loader = () => {
-    return (
-        <div className="center-screen">
-            <div className="preloader-wrapper active">
-                <div className="spinner-layer spinner-red-only">
-                    <div className="circle-clipper left">
-                        <div className="circle"/>
-                    </div>
-                    <div className="gap-patch">
-                        <div className="circle"/>
-                    </div>
-                    <div className="circle-clipper right">
-                        <div className="circle"/>
-                    </div>
-                </div>
-            </div>
-        </div>
-    )
+export default function Loader(props) {
+    let ratio = props.ratio || 3;
+
+    return <div className="uk-position-absolute uk-position-center" uk-spinner={`ratio: ${ratio}`}></div>
 }

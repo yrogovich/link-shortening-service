@@ -1,9 +1,10 @@
 import {useCallback} from 'react'
+import UIkit from 'uikit';
 
 export const useMessage = () => {
-    return useCallback(text => {
-        if (window.M && text) {
-            window.M.toast({ html: text })
+    return useCallback((text, props = { pos: 'bottom-right' }) => {
+        if (UIkit && text) {
+            UIkit.notification(text, props)
         }
     }, [])
 }
